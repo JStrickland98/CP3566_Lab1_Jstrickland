@@ -7,3 +7,9 @@ Password: secret
 May 31/26, 3:20pm
 Please review my code and fix any syntax issues.
 
+May 31/26, 3:50p,
+Edit the code in ListStudents.java to print each student row using printf with specific column formatting.
+id: width 3, right-aligned
+name: width 16, left-aligned
+program: width 4, left-aligned
+gpa: width 5, 2 decimal places, right-aligned

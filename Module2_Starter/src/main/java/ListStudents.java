@@ -15,6 +15,8 @@ public class ListStudents {
 
         DriverManager.setLoginTimeout(5);
 
+        long start = System.nanoTime();
+
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
@@ -22,18 +24,26 @@ public class ListStudents {
 
             try (ResultSet rs = ps.executeQuery()) {
 
-                System.out.println("id | name           | program | gpa");
-                System.out.println("---+----------------+---------+-----");
+                System.out.printf("%3s | %-16s | %-4s | %5s%n", "id", "name", "program", "gpa");
+                System.out.println("---+------------------+------+-----");
+
+                int count = 0;
 
                 while (rs.next()) {
+                    count++;
+
                     int id = rs.getInt("id");
                     String name = rs.getString("name");
                     String program = rs.getString("program");
                     double gpa = rs.getDouble("gpa");
 
-                    System.out.printf("%2d | %-14s | %-7s | %.2f%n",
+                    System.out.printf("%3d | %-16s | %-4s | %5.2f%n",
                             id, name, program, gpa);
                 }
+
+                long end = System.nanoTime();
+                long elapsedMs = (end - start) / 1_000_000;
+                System.out.printf("%d listed in %d ms%n", count, elapsedMs);;
             }
 
         } catch (SQLException e) {
