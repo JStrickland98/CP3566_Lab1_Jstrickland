@@ -13,21 +13,27 @@ public class ListStudents {
     public static void main(String[] args) {
         String sql = "SELECT id, name, program, gpa FROM student ORDER BY id";
 
+        DriverManager.setLoginTimeout(5);
+
         try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            System.out.println("id | name           | program | gpa");
-            System.out.println("---+----------------+---------+-----");
+            ps.setQueryTimeout(10);
 
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String program = rs.getString("program");
-                double gpa = rs.getDouble("gpa");
+            try (ResultSet rs = ps.executeQuery()) {
 
-                System.out.printf("%2d | %-14s | %-7s | %.2f%n",
-                        id, name, program, gpa);
+                System.out.println("id | name           | program | gpa");
+                System.out.println("---+----------------+---------+-----");
+
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String name = rs.getString("name");
+                    String program = rs.getString("program");
+                    double gpa = rs.getDouble("gpa");
+
+                    System.out.printf("%2d | %-14s | %-7s | %.2f%n",
+                            id, name, program, gpa);
+                }
             }
 
         } catch (SQLException e) {
