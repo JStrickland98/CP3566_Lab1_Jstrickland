@@ -60,7 +60,7 @@ public class AddStudent {
                     if (keys.next()) {
                         int newId = keys.getInt(1);
 
-                        System.out.printf("Student #%d \u00B7 %s \u00B7 program %s \u00B7 GPA %.2f added%n",
+                        System.out.printf("Student #%d · %s · program %s · GPA %.2f added%n",
                                 newId, name, program, gpa);
                     }
                 }

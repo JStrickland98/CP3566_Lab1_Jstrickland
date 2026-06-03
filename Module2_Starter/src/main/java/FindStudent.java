@@ -47,7 +47,7 @@ public class FindStudent {
                     String program = rs.getString("program");
                     double gpa = rs.getDouble("gpa");
 
-                    System.out.printf("Student #%d \u00B7 %s \u00B7 program %s \u00B7 GPA %.2f%n",
+                    System.out.printf("Student #%d · %s · program %s · GPA %.2f%n",
                             sid, name, program, gpa);
                 } else {
                     System.out.println("No student with ID " + id);
