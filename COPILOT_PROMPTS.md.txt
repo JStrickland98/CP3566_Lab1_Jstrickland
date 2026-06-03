@@ -16,3 +16,9 @@ gpa: width 5, 2 decimal places, right-aligned
 
 June 02/26, 9:00pm
 Please adjust lines 49 and 50 so that the output is formatted like this: Student #2 · Bob Mercer · program SE · GPA 3.45
+
+June 02/26, 10:00pm
+Update my code in AddStudent.java and add input validation for name, program, and gpa before database connection.
+name: trimmed, 1-80 chars
+program code: (regex ^[A-Z0-9]{2,12}$ )
+gpa: 0.00-4.00
